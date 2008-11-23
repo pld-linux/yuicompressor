@@ -1,17 +1,19 @@
+# TODO
+# - build from source
 %include	/usr/lib/rpm/macros.java
 Summary:	YUI Compressor - JavaScript compressor
 Name:		yuicompressor
-Version:	2.3.4
+Version:	2.4.1
 Release:	0.1
 License:	BSD
 Group:		Applications/WWW
 Source0:	http://www.julienlecomte.net/yuicompressor/%{name}-%{version}.zip
-# Source0-md5:	be8b31389b40f28c5c7250a076dcfba5
+# Source0-md5:	2dc5f70ad905f5bd1f3d6c1b78d1c0f0
 URL:		http://www.julienlecomte.net/yuicompressor/
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	jre >= 1.4
 Requires:	jpackage-utils
+Requires:	jre >= 1.4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
