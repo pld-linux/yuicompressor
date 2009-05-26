@@ -4,16 +4,16 @@
 Summary:	YUI Compressor - JavaScript compressor
 Name:		yuicompressor
 Version:	2.4.2
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		Applications/WWW
 Source0:	http://www.julienlecomte.net/yuicompressor/%{name}-%{version}.zip
 # Source0-md5:	2a526a9aedfe2affceed1e1c3f9c0579
-URL:		http://www.julienlecomte.net/yuicompressor/
+URL:		http://developer.yahoo.com/yui/compressor/
+BuildRequires:	jre >= 1.4
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
-Requires:	jre >= 1.4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
