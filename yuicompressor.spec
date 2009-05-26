@@ -4,7 +4,7 @@
 Summary:	YUI Compressor - JavaScript compressor
 Name:		yuicompressor
 Version:	2.4.2
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/WWW
 Source0:	http://www.julienlecomte.net/yuicompressor/%{name}-%{version}.zip
