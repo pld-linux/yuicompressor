@@ -2,6 +2,7 @@
 # - build from source
 %include	/usr/lib/rpm/macros.java
 Summary:	YUI Compressor - JavaScript compressor
+Summary(pl.UTF-8):	Narzędzie do kompresji kodu JavaScript
 Name:		yuicompressor
 Version:	2.4.2
 Release:	2
@@ -26,6 +27,15 @@ as safe as JSMin.
 Tests on the YUI library have shown savings of about 18% compared to
 JSMin and 10% compared to the Dojo compressor (these respectively
 become 10% and 5% after HTTP compression)
+
+%description -l pl.UTF-8
+YUI Compressor jest narzędziem do kompresji kodu JavaScript.
+
+Poziom kompresji osiągany przez YUI Compressor jest większy niż w przypadku
+Dojo compressor przy czym jest nie mniej bezpieczny niż JSMin.
+
+Testy biblioteki YUI wykazały, że 18% zysk względem JSMin i 10% zysk względem
+Dojo Compressor (odpowiednio 10% i 5% po kompresji HTTP).
 
 %prep
 %setup -q
