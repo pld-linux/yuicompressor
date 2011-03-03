@@ -9,7 +9,7 @@ Version:	2.4.2
 Release:	3
 License:	BSD
 Group:		Applications/WWW
-Source0:	http://www.julienlecomte.net/yuicompressor/%{name}-%{version}.zip
+Source0:	http://yuilibrary.com/downloads/yuicompressor/%{name}-%{version}.zip
 # Source0-md5:	2a526a9aedfe2affceed1e1c3f9c0579
 Source1:	%{name}.sh
 URL:		http://developer.yahoo.com/yui/compressor/
@@ -53,7 +53,7 @@ rm lib/jargs-1.0.jar
 JARGS_JAR=$(find-jar jargs)
 ln -sf $JARGS_JAR lib/jargs-1.0.jar
 
-cp %{SOURCE1} yuicompressor
+cp -p %{SOURCE1} yuicompressor
 
 %build
 required_jars='jargs'
@@ -63,7 +63,7 @@ CLASSPATH=$(build-classpath $required_jars)
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}}
-install %{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -p %{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # jars
 cp -a build/yuicompressor-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
