@@ -1,16 +1,20 @@
 # TODO
 # - use rhino from PLD package
 # - do not embed jargs into yuicompressor.jar
+#
+# Conditional build:
+%bcond_without	tests		# don't build and run tests
+
 %include	/usr/lib/rpm/macros.java
 Summary:	YUI Compressor - JavaScript compressor
 Summary(pl.UTF-8):	Narzędzie do kompresji kodu JavaScript
 Name:		yuicompressor
-Version:	2.4.2
-Release:	3
+Version:	2.4.6
+Release:	1
 License:	BSD
 Group:		Applications/WWW
-Source0:	http://yuilibrary.com/downloads/yuicompressor/%{name}-%{version}.zip
-# Source0-md5:	2a526a9aedfe2affceed1e1c3f9c0579
+Source0:	http://yui.zenfs.com/releases/yuicompressor/%{name}-%{version}.zip
+# Source0-md5:	85670711b55124240a087e0b552304fa
 Source1:	%{name}.sh
 URL:		http://developer.yahoo.com/yui/compressor/
 BuildRequires:	ant
@@ -19,12 +23,15 @@ BuildRequires:	jdk
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
+%if %{with tests}
+BuildRequires:	bash
+%endif
 Requires:	jpackage-utils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The YUI Compressor is a JavaScript minifier.
+The YUI Compressor is a JavaScript/CSS minifier.
 
 Its level of compaction is higher than the Dojo compressor, and it is
 as safe as JSMin.
@@ -53,17 +60,21 @@ rm lib/jargs-1.0.jar
 JARGS_JAR=$(find-jar jargs)
 ln -sf $JARGS_JAR lib/jargs-1.0.jar
 
-cp -p %{SOURCE1} yuicompressor
+chmod a+x tests/suite.sh
 
 %build
 required_jars='jargs'
 CLASSPATH=$(build-classpath $required_jars)
 %ant -Dbuild.sysclasspath=first
 
+%if %{with tests}
+./tests/suite.sh
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}}
-install -p %{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 # jars
 cp -a build/yuicompressor-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
@@ -74,6 +85,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*
+%doc LICENSE.TXT doc/*
 %attr(755,root,root) %{_bindir}/%{name}
 %{_javadir}/*.jar
