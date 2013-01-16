@@ -9,12 +9,12 @@
 Summary:	YUI Compressor - JavaScript compressor
 Summary(pl.UTF-8):	Narzędzie do kompresji kodu JavaScript
 Name:		yuicompressor
-Version:	2.4.6
+Version:	2.4.7
 Release:	1
 License:	BSD
 Group:		Applications/WWW
 Source0:	http://yui.zenfs.com/releases/yuicompressor/%{name}-%{version}.zip
-# Source0-md5:	85670711b55124240a087e0b552304fa
+# Source0-md5:	885657c68ed617737e730b4c2ce52dda
 Source1:	%{name}.sh
 URL:		http://developer.yahoo.com/yui/compressor/
 BuildRequires:	ant
