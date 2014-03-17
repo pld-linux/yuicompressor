@@ -9,20 +9,19 @@
 Summary:	YUI Compressor - JavaScript compressor
 Summary(pl.UTF-8):	Narzędzie do kompresji kodu JavaScript
 Name:		yuicompressor
-Version:	2.4.7
+Version:	2.4.8
 Release:	1
 License:	BSD
 Group:		Applications/WWW
-Source0:	http://yui.zenfs.com/releases/yuicompressor/%{name}-%{version}.zip
-# Source0-md5:	885657c68ed617737e730b4c2ce52dda
+Source0:	https://github.com/yui/yuicompressor/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	a5a0b0d3c99e0a52e24a1da1560560eb
 Source1:	%{name}.sh
-URL:		http://developer.yahoo.com/yui/compressor/
+URL:		http://yui.github.io/yuicompressor/
 BuildRequires:	ant
 BuildRequires:	java-jargs
-BuildRequires:	jdk
+BuildRequires:	jdk >= 1.4
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-BuildRequires:	unzip
 %if %{with tests}
 BuildRequires:	bash
 %endif
@@ -57,12 +56,13 @@ HTTP).
 rm -rf build
 # Do not remove lib/rhino-1.6R7.jar It does not work with our java-rhino-1.7
 rm lib/jargs-1.0.jar
-JARGS_JAR=$(find-jar jargs)
-ln -sf $JARGS_JAR lib/jargs-1.0.jar
 
 chmod a+x tests/suite.sh
 
 %build
+JARGS_JAR=$(find-jar jargs)
+ln -sf $JARGS_JAR lib/jargs-1.0.jar
+
 required_jars='jargs'
 CLASSPATH=$(build-classpath $required_jars)
 %ant -Dbuild.sysclasspath=first
@@ -75,9 +75,7 @@ CLASSPATH=$(build-classpath $required_jars)
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}}
 install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}
-
-# jars
-cp -a build/yuicompressor-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
+cp -p build/yuicompressor-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
 ln -s %{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
 
 %clean
