@@ -13,6 +13,7 @@ Version:	2.4.8
 Release:	1
 License:	BSD
 Group:		Applications/WWW
+# Source0Download: https://github.com/yui/yuicompressor/releases
 Source0:	https://github.com/yui/yuicompressor/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	a5a0b0d3c99e0a52e24a1da1560560eb
 Source1:	%{name}.sh
