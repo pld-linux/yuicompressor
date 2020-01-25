@@ -5,7 +5,6 @@
 # Conditional build:
 %bcond_without	tests		# don't build and run tests
 
-%include	/usr/lib/rpm/macros.java
 Summary:	YUI Compressor - JavaScript compressor
 Summary(pl.UTF-8):	Narzędzie do kompresji kodu JavaScript
 Name:		yuicompressor
